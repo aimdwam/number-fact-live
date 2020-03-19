@@ -14,6 +14,18 @@ function onLoad() {
         return item
     }
 
+    let numberapi2 = cat => num => {
+        let url = "http://numbersapi.com/" + num + "/" + cat + "?json"
+        return fetch(url).then(
+            response => response.json()
+            , error => console.log(error)
+        ).then(data =>
+            data.found ? data.text : Promise.reject()
+        )
+    }
+
+    let mathFact = numberapi2("math")
+
     let numberapi = num => {
         let url = "http://numbersapi.com/" + num + "/math?json"
         return fetch(url).then(
