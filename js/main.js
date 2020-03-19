@@ -25,8 +25,15 @@ function onLoad() {
     }
 
     let mathFact = numberapi2("math")
+    let yearFact = numberapi2("year")
 
     let numberapi = num => {
+        return mathFact(num)
+            .catch(e => yearFact(num))
+            .catch(e => num + " is unremarkable.")
+    }
+
+    let numberapi_old = num => {
         let url = "http://numbersapi.com/" + num + "/math?json"
         return fetch(url).then(
             response => response.json()
@@ -41,7 +48,9 @@ function onLoad() {
             let url = "http://numbersapi.com/" + num + "/year?json"
             return fetch(url)
                 .then(response => response.json())
-                .then(data => data.text)
+                .then(data => {
+                    return data.found ? data.text : num + " is unremarkable."
+                })
         })
     }
 
