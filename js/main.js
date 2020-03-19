@@ -6,6 +6,7 @@ function onLoad() {
     let factList = document.getElementById("factList")
     let checkBtn = document.getElementById("checkBtn")
     let input = document.getElementById("textField")
+    let form = document.getElementById('form')
 
     let createItem = text => {
         let item = document.createElement('li')
@@ -21,13 +22,13 @@ function onLoad() {
         )
     }
 
-    let handleClick = evt => {
-        console.log('clicked')
-
+    let submitHandler = evt => {
+        console.log("form submitted", input.value)
+        evt.preventDefault()
         numberapi(input.value)
             .then(text => factList.append(createItem(text)))
     }
 
-    checkBtn.addEventListener('click', handleClick)
+    form.addEventListener('submit', submitHandler)
 }
 

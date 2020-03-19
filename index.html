@@ -9,8 +9,10 @@
 </head>
 <body onload="onLoad()">
     <h1>Number Facts</h1>
-    <input id="textField" pattern="[0-9]+" type="text" placeholder="Please input a number">
-    <button id="checkBtn">Check</button>
+    <form id="form">
+        <input id="textField" pattern="[0-9]+" type="text" placeholder="Please input a number">
+        <input type="submit" id="checkBtn" value="Check">
+    </form>
 
     <ul id="factList"></ul>
 </body>
