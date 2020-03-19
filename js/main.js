@@ -18,16 +18,14 @@ function onLoad() {
         return fetch(url).then(
             response => response.text()
             , error => console.log(error)
-        ).then (text => {
-            console.log("text: ", text)
-        })
+        )
     }
 
     let handleClick = evt => {
         console.log('clicked')
-        factList.append(createItem(input.value))
 
         numberapi(input.value)
+            .then(text => factList.append(createItem(text)))
     }
 
     checkBtn.addEventListener('click', handleClick)
