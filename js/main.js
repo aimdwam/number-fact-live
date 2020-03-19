@@ -15,7 +15,7 @@ function onLoad() {
     }
 
     let numberapi = num => {
-        let url = "http://numbersapi.com/" + num
+        let url = "http://numbersapi.com/" + num + "/math?json"
         return fetch(url).then(
             response => response.text()
             , error => console.log(error)
@@ -26,7 +26,12 @@ function onLoad() {
         console.log("form submitted", input.value)
         evt.preventDefault()
         numberapi(input.value)
-            .then(text => factList.append(createItem(text)))
+            .then(text => {
+                console.log("in JSON: ", text)
+                let jsObject = JSON.parse(text)
+                console.log("js object: ", jsObject)
+                factList.append(createItem(jsObject.text))
+            })
     }
 
     form.addEventListener('submit', submitHandler)
