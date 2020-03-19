@@ -14,7 +14,7 @@ function onLoad() {
         return item
     }
 
-    let numberapi2 = cat => num => {
+    let numberapi = cat => num => {
         let url = "http://numbersapi.com/" + num + "/" + cat + "?json"
         return fetch(url).then(
             response => response.json()
@@ -24,40 +24,21 @@ function onLoad() {
         )
     }
 
-    let mathFact = numberapi2("math")
-    let yearFact = numberapi2("year")
+    let mathFact = numberapi("math")
+    let yearFact = numberapi("year")
+    let defaultFact = numberapi("")
 
-    let numberapi = num => {
+    let fatchFact = num => {
         return mathFact(num)
             .catch(e => yearFact(num))
+            .catch(e => defaultFact(num))
             .catch(e => num + " is unremarkable.")
-    }
-
-    let numberapi_old = num => {
-        let url = "http://numbersapi.com/" + num + "/math?json"
-        return fetch(url).then(
-            response => response.json()
-            , error => console.log(error)
-        ).then(data => {
-            if (!data.found) {
-                return Promise.reject()
-            } else {
-                return data.text
-            }
-        }).catch(error => {
-            let url = "http://numbersapi.com/" + num + "/year?json"
-            return fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    return data.found ? data.text : num + " is unremarkable."
-                })
-        })
     }
 
     let submitHandler = evt => {
         console.log("form submitted", input.value)
         evt.preventDefault()
-        numberapi(input.value)
+        fatchFact(input.value)
             .then(text => {
                 factList.append(createItem(text))
             })
