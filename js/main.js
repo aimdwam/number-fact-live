@@ -47,10 +47,11 @@ function onLoad() {
     let submitHandler = evt => {
         console.log("form submitted", input.value)
         evt.preventDefault()
-        fatchFact(input.value)
-            .then(text => {
-                factList.append(createItem(text))
-            })
+        if (input.value)
+            fatchFact(input.value)
+                .then(text => {
+                    factList.append(createItem(text))
+                })
     }
 
     form.addEventListener('submit', submitHandler)
