@@ -15,19 +15,12 @@ function onLoad() {
 
     let numberapi = num => {
         let url = "http://numbersapi.com/" + num
-        let promise = fetch(url)
-        let resultPromise = promise.then(response => {
-            let textPromise = response.text()
-            console.log("textPromise: ", textPromise)
-            return textPromise
-        }, error => {
-            console.log(error)
-        })
-
-        resultPromise.then (text => {
+        return fetch(url).then(
+            response => response.text()
+            , error => console.log(error)
+        ).then (text => {
             console.log("text: ", text)
         })
-        console.log('function finished')
     }
 
     let handleClick = evt => {
