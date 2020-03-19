@@ -29,10 +29,19 @@ function onLoad() {
     let defaultFact = numberapi("")
 
     let fatchFact = num => {
+        input.disabled = true
+        input.value = "fetching facts for " + num + "..."
+        checkBtn.disabled = true
+
         return mathFact(num)
             .catch(e => yearFact(num))
             .catch(e => defaultFact(num))
             .catch(e => num + " is unremarkable.")
+            .finally(() => {
+                input.disabled = false
+                checkBtn.disabled = false
+                input.value = ""
+            })
     }
 
     let submitHandler = evt => {
