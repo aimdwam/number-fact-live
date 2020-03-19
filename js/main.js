@@ -41,6 +41,7 @@ function onLoad() {
                 input.disabled = false
                 checkBtn.disabled = false
                 input.value = ""
+                input.focus()
             })
     }
 
@@ -55,5 +56,7 @@ function onLoad() {
     }
 
     form.addEventListener('submit', submitHandler)
+
+    input.focus()
 }
 
