@@ -7,12 +7,17 @@ function onLoad() {
     let checkBtn = document.getElementById("checkBtn")
     let input = document.getElementById("textField")
 
+    let createItem = text => {
+        let item = document.createElement('li')
+        item.innerText = text
+        return item
+    }
+
     let handleClick = evt => {
         console.log('clicked')
-        let item = document.createElement('li')
-        item.innerText = input.value
-        factList.append(item)
+        factList.append(createItem(input.value))
     }
+    
     checkBtn.addEventListener('click', handleClick)
 }
 
