@@ -1,0 +1,14 @@
+li {
+    list-style: none;
+    animation: slideIn 1s;
+    position: relative;
+}
+
+@keyframes slideIn {
+    0% { left: 20px; opacity: 0;}
+    100% { left: 0px; opacity: 100%;}
+}
+
+#textField:invalid {
+    background-color: red;
+}

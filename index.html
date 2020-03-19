@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
     <script src="js/main.js"></script>
     <title>Number facts</title>
 </head>
 <body onload="onLoad()">
     <h1>Number Facts</h1>
-    <input type="text" placeholder="Please input a number">
+    <input id="textField" pattern="[0-9]+" type="text" placeholder="Please input a number">
     <button id="checkBtn">Check</button>
 
     <ul id="factList"></ul>
