@@ -17,9 +17,20 @@ function onLoad() {
     let numberapi = num => {
         let url = "http://numbersapi.com/" + num + "/math?json"
         return fetch(url).then(
-            response => response.text()
+            response => response.json()
             , error => console.log(error)
-        )
+        ).then(data => {
+            if (!data.found) {
+                return Promise.reject()
+            } else {
+                return data.text
+            }
+        }).catch(error => {
+            let url = "http://numbersapi.com/" + num + "/year?json"
+            return fetch(url)
+                .then(response => response.json())
+                .then(data => data.text)
+        })
     }
 
     let submitHandler = evt => {
@@ -27,10 +38,7 @@ function onLoad() {
         evt.preventDefault()
         numberapi(input.value)
             .then(text => {
-                console.log("in JSON: ", text)
-                let jsObject = JSON.parse(text)
-                console.log("js object: ", jsObject)
-                factList.append(createItem(jsObject.text))
+                factList.append(createItem(text))
             })
     }
 
